@@ -14,6 +14,6 @@
 task main()
 {
 
-	fwd(5);
+	fwd(36);
 
 }
