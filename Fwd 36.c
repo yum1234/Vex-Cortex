@@ -13,7 +13,7 @@
 
 task main()
 {
-
+	wait1Msec(10000);
 	fwd(36);
 
 }
