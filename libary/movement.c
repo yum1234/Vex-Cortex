@@ -13,17 +13,18 @@ const float radius = 2; //inches
 const float diameter = 4; //inches
 const float pie = 3.1415926535897932384;
 const float circumference = diameter*radius;
-const float fullRotation = 360; //There are 360 pulses for every rotation in the encoder.
+const float fullRotation = 180; //There are 360 pulses for every rotation in the encoder.
 
 void fwd(float inches)
 {
 	resetEncoders();
 	float rotations = inches/circumference;
 	//turns on motors.
-	motor[lt] = 100;
-	motor[rt] = 100;
+	motor[lt] = 31;
+	motor[rt] = 30;
 	while(SensorValue[encoderLT]/fullRotation < rotations)
 	{
+		/*
 		//keeps repeating until rotations exceed calculated value.
 		if(SensorValue[encoderLT] > 0.80*rotations)
 		{
@@ -31,6 +32,8 @@ void fwd(float inches)
 			motor[lt] = 30;
 			motor[rt] = 30;
 		}
+		*/
+		;
 	}
 	//turns off motors.
 	motor[lt] = 0;
