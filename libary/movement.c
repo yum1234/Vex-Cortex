@@ -68,6 +68,22 @@ void right()
 
 }
 
+void turn180()
+{
+	//Simply just turn on left motor to move a distance for 1/4 of a circle while leaving the right one off?
+	resetEncoders();
+	//float rotations = (circumference/2)/circumference;
+	motor[rt] = 30;
+	//motor[lt] = -31;
+	while(SensorValue[encoderRT] < 180*6+65)
+	{
+		;
+	}
+	motor[rt] = 0;
+	motor[lt] = 0;
+
+}
+
 void resetEncoders()
 {
 	//resets both encoders
