@@ -70,14 +70,15 @@ void turn180()
 
 }
 
-void spin360                                                    ()
+void spin360(float inches)
 {
 	//Simply just turn on left motor to move a distance for 1/4 of a circle while leaving the right one off?
 	resetEncoders();
-	//float rotations = (circumference/2)/circumference;
+	float rotations = inches/circumference;
+	//float rotations = 1;
 	motor[rt] = 30;
-	//motor[lt] = -31;
-	while(SensorValue[encoderRT] < 180*6+67)
+	motor[lt] = -30;
+	while(SensorValue[encoderRT]/fullRotation < rotations)
 	{
 		;
 	}
