@@ -39,7 +39,7 @@ void fwd(float inches)
 	motor[lt] = 0;
 	motor[rt] = 0;
 }
-
+/*
 void left()
 {
 	//Simply just turn on left motor to move a distance for 1/4 of a circle while leaving the right one off?
@@ -53,6 +53,10 @@ void left()
 	motor[lt] = 0;
 
 }
+*/
+
+
+
 
 void turn180()
 {
@@ -73,11 +77,17 @@ void turn180()
 void spin360(float inches)
 {
 	//Simply just turn on left motor to move a distance for 1/4 of a circle while leaving the right one off?
+	//If inches is positive, clockwise
+	//If inches are negative, counterclockwise.
 	resetEncoders();
+	
 	float rotations = inches/circumference;
 	//float rotations = 1;
-	motor[rt] = 30;
-	motor[lt] = -30;
+	if(inches > 0) 
+	{
+		motor[rt] = 30;
+		motor[lt] = -30;
+	}
 	while(SensorValue[encoderRT]/fullRotation < rotations)
 	{
 		;
@@ -85,6 +95,11 @@ void spin360(float inches)
 	motor[rt] = 0;
 	motor[lt] = 0;
 
+}
+
+void right()
+{
+	spin360(10.7);
 }
 
 void resetEncoders()
