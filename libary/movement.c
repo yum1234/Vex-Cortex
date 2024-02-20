@@ -7,6 +7,8 @@
 void fwd(float inches);
 void left();
 void right();
+void turn180();
+void spin360();
 void resetEncoders();
 
 const float radius = 2; //inches
@@ -18,7 +20,9 @@ const float fullRotation = 180; //There are 360 pulses for every rotation in the
 void fwd(float inches)
 {
 	resetEncoders();
-	float rotations = inches/circumference;
+	float error = 6;
+	//6 inches is the discovered error
+	float rotations = (inches-error)/circumference;
 	//turns on motors.
 	motor[lt] = 31;
 	motor[rt] = 30;
@@ -80,14 +84,22 @@ void spin360(float inches)
 	//If inches is positive, clockwise
 	//If inches are negative, counterclockwise.
 	resetEncoders();
-	
+
 	float rotations = inches/circumference;
 	//float rotations = 1;
-	if(inches > 0) 
+	if(inches > 0)
 	{
+		//inches is positive, turn clockwise to the right.
 		motor[rt] = 30;
 		motor[lt] = -30;
 	}
+	else 
+	{
+		//inches is negative, turn counterclockwise towards the left.
+		motor[rt] = -30;
+		motor[lt] = 30;
+	}
+	
 	while(SensorValue[encoderRT]/fullRotation < rotations)
 	{
 		;
@@ -100,6 +112,11 @@ void spin360(float inches)
 void right()
 {
 	spin360(10.7);
+}
+
+void left()
+{
+	spin360(-10.7);
 }
 
 void resetEncoders()
