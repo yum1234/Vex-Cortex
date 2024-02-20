@@ -14,6 +14,6 @@
 task main()
 {
 	wait1Msec(2000);
-	fwd(42);
+	fwd(36);
 
 }
